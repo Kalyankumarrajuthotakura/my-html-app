@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Clone</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: black;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+button {
+  background: red;
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Sections */
+.section {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+/* Banner */
+.banner {
+  height: 80vh;
+  background: url('https://wallpapercave.com/wp/wp4056410.jpg') center/cover;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+}
+
+/* Rows */
+.row {
+  padding: 20px;
+}
+
+.row-posters {
+  display: flex;
+  overflow-x: auto;
+}
+
+.poster {
+  width: 200px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.poster:hover {
+  transform: scale(1.1);
+}
+
+/* Login */
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-inner {
+  background: #111;
+  padding: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Player */
+.player {
+  text-align: center;
+  padding-top: 80px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">NETFLIX</div>
+  <button onclick="showSection('login')">Login</button>
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="login" class="section active">
+  <div class="login-box">
+    <div class="login-inner">
+      <h2>Login</h2>
+      <input type="text" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOME PAGE -->
+<div id="home" class="section">
+
+  <div class="banner">
+    <h1>Welcome to Netflix Clone</h1>
+  </div>
+
+  <!-- Telugu -->
+  <div class="row">
+    <h2>Telugu Movies</h2>
+    <div class="row-posters">
+      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/9/93/RRR_Poster.jpg" onclick="playMovie('RRR')">
+      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/3/3f/Pushpa_-_The_Rise.jpg" onclick="playMovie('Pushpa')">
+    </div>
+  </div>
+
+  <!-- Hindi -->
+  <div class="row">
+    <h2>Hindi Movies</h2>
+    <div class="row-posters">
+      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/4/4f/Pathaan_film_poster.jpg" onclick="playMovie('Pathaan')">
+      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/7/7f/Jawan_film_poster.jpg" onclick="playMovie('Jawan')">
+    </div>
+  </div>
+
+  <!-- Action -->
+  <div class="row">
+    <h2>Action Movies</h2>
+    <div class="row-posters">
+      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/9/93/RRR_Poster.jpg" onclick="playMovie('RRR')">
+      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/4/4f/Pathaan_film_poster.jpg" onclick="playMovie('Pathaan')">
+    </div>
+  </div>
+
+</div>
+
+<!-- MOVIE PLAYER -->
+<div id="player" class="section">
+  <div class="player">
+    <h1 id="movieTitle"></h1>
+
+    <video width="70%" controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+
+    <br><br>
+    <button onclick="showSection('home')">Back</button>
+  </div>
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function login() {
+  alert("Login Successful");
+  showSection('home');
+}
+
+function playMovie(name) {
+  document.getElementById("movieTitle").innerText = name;
+  showSection('player');
+}
+</script>
+
+</body>
+</html>
